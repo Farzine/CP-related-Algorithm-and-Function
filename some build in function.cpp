@@ -40,3 +40,22 @@ int main()
 		<< *max_element(a.begin(), a.end());
 	return 0;
 }
+
+
+//__builtin_popcount()  is a built-in function of GCC compiler. This function is used to count the number of set bits in an unsigned integer. 
+// ai function decimal number k binary te convert kore then oi number a koi ta 1 ase seta return kore
+// C++ code to demonstrate the
+// __builtin_popcount function
+#include <bits/stdc++.h>
+using namespace std;
+int main()
+{
+
+	int n = 4;
+
+	// Printing the number of set bits in n
+	cout << __builtin_popcount(n); // output 1
+
+	return 0;
+}
+
