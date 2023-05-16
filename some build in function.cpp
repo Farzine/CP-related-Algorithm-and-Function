@@ -59,3 +59,27 @@ int main()
 	return 0;
 }
 
+
+//inline Functions in C++
+
+//C++ provides inline functions to reduce the function call overhead. An inline function is a function that is expanded in line when it is called. 
+//When the inline function is called whole code of the inline function gets inserted or substituted at the point of the inline function call. 
+//This substitution is performed by the C++ compiler at compile time. An inline function may increase efficiency if it is small.
+
+Syntax:
+
+#include <iostream>
+using namespace std;
+inline int cube(int s) { return s * s * s; }
+int main()
+{
+    cout << "The cube of 3 is: " << cube(3) << "\n";
+    return 0;
+}  
+//The compiler may not perform inlining in such circumstances as: 
+
+//If a function contains a loop. (for, while and do-while) 
+//If a function contains static variables. 
+//If a function is recursive. 
+//If a function return type is other than void, and the return statement doesn’t exist in a function body. 
+//If a function contains a switch or goto statement. 
