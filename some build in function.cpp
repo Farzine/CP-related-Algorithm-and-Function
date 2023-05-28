@@ -165,4 +165,8 @@ int main()
 }
 
 ///////////////
-
+In C programming language, the "scanf" function is used to read input from the user. The code you provided, "while (scanf ("%d", &t) ==1)", 
+is a loop that continues to read input from the user as long as the input is a valid integer. The loop will execute the code inside the curly 
+brackets for each valid integer entered by the user. The loop will terminate when the user enters an invalid input or when the program encounters an error. 
+In summary, the code you provided is used to repeatedly read integers from the user until an invalid input is entered or an error occurs.
+////////////////
