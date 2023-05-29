@@ -170,3 +170,32 @@ is a loop that continues to read input from the user as long as the input is a v
 brackets for each valid integer entered by the user. The loop will terminate when the user enters an invalid input or when the program encounters an error. 
 In summary, the code you provided is used to repeatedly read integers from the user until an invalid input is entered or an error occurs.
 ////////////////
+	
+std::count() returns the number of occurrences of an element in a given range. Returns the number of elements in the range [first, last) that compare equal to val.
+
+int main()
+{
+	int arr[] = { 3, 2, 1, 3, 3, 5, 3 };
+	int n = sizeof(arr) / sizeof(arr[0]);
+	cout <<
+
+		" Number of times 3 appears : "
+	<< count(arr, arr + n, 3);
+
+	return 0;
+}
+															 
+#include <bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+	vector<int> vect{ 3, 2, 1, 3, 3, 5, 3 };
+	cout << "Number of times 3 appears : "
+		<< count(vect.begin(), vect.end(), 3);
+
+	return 0;
+}
+
+///////////////////////////////////////////////
+															   
