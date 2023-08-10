@@ -1,97 +1,84 @@
-
+// C++ program to find articulation points in an undirected
+// graph
 #include <bits/stdc++.h>
 using namespace std;
-#define int long long
 
-
-void dfs(vector<int> adj[], int n, vector<int>& vis,
-         int i, int curr)
+// A recursive function to traverse the graph without
+// considering the ith vertex and its associated edges
+void dfs(vector<int> adj[], int V, vector<int>& vis,
+		int i, int curr)
 {
-    vis[curr] = 1;
-    for (auto x : adj[curr])
-    {
-        if (x != i)
-        {
-            if (!vis[x])
-            {
-                dfs(adj, n, vis, i, x);
-            }
-        }
-    }
+	vis[curr] = 1;
+	for (auto x : adj[curr]) {
+		if (x != i) {
+			if (!vis[x]) {
+				dfs(adj, V, vis, i, x);
+			}
+		}
+	}
 }
 
-
-int AP(vector<int> adj[], int n)
+// Function to find Articulation Points in the graph
+void AP(vector<int> adj[], int V)
 {
-    int ct=0;
 
+	// Iterating over all the vertices and for each vertex i
+	// remove the vertex and check whether the graph remains
+	// connected.
+	for (int i = 1; i <= V; i++) {
 
-    for (int i = 1; i <= n; i++)
-    {
+		// To keep track of number of components of graph
+		int components = 0;
 
-        int components = 0;
+		// To keep track of visited vertices
+		vector<int> vis(V + 1, 0);
 
-        vector<int> vis(n + 1, 0);
+		// Iterating over the graph after removing vertex i
+		// and its associated edges
+		for (int j = 1; j <= V; j++) {
+			if (j != i) {
 
+				// If the jth vertex is not visited it will
+				// form a new component.
+				if (!vis[j]) {
 
-        for (int j = 1; j <= n; j++)
-        {
-            if (j != i)
-            {
+					// Increasing the number of components.
+					components++;
 
-                if (!vis[j])
-                {
-
-
-                    components++;
-
-
-                    dfs(adj, n, vis, i, j);
-                }
-            }
-        }
-
-        if (components > 1)
-        {
-            //cout << i << "\n";
-            ct++;
-        }
-    }
-    return ct;
+					// dfs call for the jth vertex
+					dfs(adj, V, vis, i, j);
+				}
+			}
+		}
+		// If number of components is more than 1 after
+		// removing the ith vertex then vertex i is an
+		// articulation point.
+		if (components > 1) {
+			cout << i << "\n";
+		}
+	}
 }
 
-
+// Utility function to add an edge
 void addEdge(vector<int> adj[], int u, int v)
 {
-    adj[u].push_back(v);
-    adj[v].push_back(u);
+	adj[u].push_back(v);
+	adj[v].push_back(u);
 }
 
-
-signed main()
+// Driver Code
+int main()
 {
+	// Create graphs given in above diagrams
+	cout << "Articulation points in the graph \n";
+	int V = 5;
+	vector<int> adj1[V + 1];
+	addEdge(adj1, 1, 2);
+	addEdge(adj1, 2, 3);
+	addEdge(adj1, 1, 3);
+	addEdge(adj1, 3, 4);
+	addEdge(adj1, 4, 5);
+	AP(adj1, V);
 
-    while(1)
-    {
-        int n,m;
-        cin>>n>>m;
-        if(n==0&&m==0)
-            break;
-        else
-        {
-            vector<int> adj1[n + 1];
-            for(int i=0; i<m; i++)
-            {
-                int u,v;
-                cin>>u>>v;
-                addEdge(adj1,u,v);
-            }
-            int ct =AP(adj1, n);
-            cout<<ct<<endl;
-        }
-
-    }
-
-    return 0;
+	return 0;
 }
-
